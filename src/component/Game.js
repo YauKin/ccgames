@@ -50,7 +50,7 @@ const GameList = (props) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={false}
+        rowsPerPageOptions={[20]}
         component="div"
         count={totalGameNum}
         rowsPerPage={perPage}
@@ -85,7 +85,6 @@ export const Game = (props) => {
         }
       })
       .then((res) => {
-        console.log("res data: ", res.data);
         let totalGameNum = parseInt(res.data.data.total);
         let perPage = res.data.data.rows.length;
         setPerPage(perPage);
@@ -99,14 +98,16 @@ export const Game = (props) => {
       .finally(() => setIsLoading(false));
   };
   return (
-    <GameList
-      gameData={gameData}
-      page={page}
-      perPage={perPage}
-      totalPage={totalPage}
-      totalGameNum={totalGameNum}
-      setPage={setPage}
-      getGames={getGames}
-    />
+    !isLoading && (
+      <GameList
+        gameData={gameData}
+        page={page}
+        perPage={perPage}
+        totalPage={totalPage}
+        totalGameNum={totalGameNum}
+        setPage={setPage}
+        getGames={getGames}
+      />
+    )
   );
 };
