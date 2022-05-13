@@ -42,6 +42,7 @@ export const Game = (props) => {
   return (
     !isLoading && (
       <GameTable
+        pagination={true}
         gameData={gameData}
         page={page}
         perPage={perPage}

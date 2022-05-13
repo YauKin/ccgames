@@ -5,12 +5,15 @@ import {
     Tab,
     Box
 } from '@mui/material';
-import { Game } from "../appResource";
+import { Game, GameSearch } from "../appResource";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
         <div
+            style={{
+                minWidth: 1000
+            }}
             role="tabpanel"
             hidden={value !== index}
             id={`vertical-tabpanel-${index}`}
@@ -55,9 +58,10 @@ export default function VerticalTabs() {
                 aria-label="Vertical tabs example"
                 sx={{ borderRight: 1, borderColor: 'divider' }}
             >
-                <Tab label="Item One" {...a11yProps(0)} />
+                <Tab label="User Information" {...a11yProps(0)} />
                 <Tab label="Item Two" {...a11yProps(1)} />
                 <Tab label="Game List" {...a11yProps(2)} />
+                <Tab label="Game Search" {...a11yProps(3)} />
             </Tabs>
             <TabPanel value={value} index={0}>
                 User Information
@@ -67,6 +71,9 @@ export default function VerticalTabs() {
             </TabPanel>
             <TabPanel value={value} index={2}>
                 <Game />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+                <GameSearch />
             </TabPanel>
         </Box>
     );

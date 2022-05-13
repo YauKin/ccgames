@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { setCookie } from "../unit/cookie";
 export const GameTable = (props) => {
-    const { gameData, page, perPage, totalGameNum, setPage, getGames } = props;
+    const { gameData, page, perPage, totalGameNum, setPage, getGames, pagination } = props;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
         setCookie("page", newPage, 9999);
@@ -22,7 +22,7 @@ export const GameTable = (props) => {
     return (
         <Paper>
             <TableContainer>
-                <Table sx={{ minWidth: 650 }} aria-label="games table">
+                <Table sx={{ minWidth: 1000 }} aria-label="games table">
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
@@ -47,14 +47,19 @@ export const GameTable = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[20]}
-                component="div"
-                count={totalGameNum}
-                rowsPerPage={perPage}
-                page={page}
-                onPageChange={handleChangePage}
-            />
+            {
+                pagination
+                &&
+                <TablePagination
+                    rowsPerPageOptions={[20]}
+                    component="div"
+                    count={totalGameNum}
+                    rowsPerPage={perPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                />
+            }
+
         </Paper>
     );
 };
