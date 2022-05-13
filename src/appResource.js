@@ -1,3 +1,3 @@
-import { Game } from "./component/Game";
+import { Game } from "./games/Game";
 
 export { Game };

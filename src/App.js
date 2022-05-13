@@ -1,10 +1,8 @@
 import "./styles.css";
-import { Game } from "./appResource";
+import VerticalTabs from "./component/tab"
 const App = () => {
   return (
-    <div className="App">
-      <Game />
-    </div>
+    <VerticalTabs />
   );
 };
 export default App;
