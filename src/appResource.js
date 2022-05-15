@@ -1,4 +1,4 @@
 import { Game } from "./games/Game";
 import { GameSearch } from "./games/GameSearch";
-
-export { Game, GameSearch };
+import { User } from "./user/User";
+export { Game, GameSearch, User };

@@ -5,14 +5,14 @@ import {
     Tab,
     Box
 } from '@mui/material';
-import { Game, GameSearch } from "../appResource";
+import { Game, GameSearch, User } from "../appResource";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
         <div
             style={{
-                minWidth: 1000
+                // backgroundColor:"red"
             }}
             role="tabpanel"
             hidden={value !== index}
@@ -51,6 +51,10 @@ export default function VerticalTabs() {
             sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
         >
             <Tabs
+                style={{
+                    // backgroundColor: "blue",
+                    minWidth: 200
+                }}
                 orientation="vertical"
                 variant="scrollable"
                 value={value}
@@ -64,7 +68,7 @@ export default function VerticalTabs() {
                 <Tab label="Game Search" {...a11yProps(3)} />
             </Tabs>
             <TabPanel value={value} index={0}>
-                User Information
+                <User />
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two

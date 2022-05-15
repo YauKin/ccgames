@@ -8,9 +8,13 @@ import {
     TableRow,
     Paper,
     TablePagination,
-    Button
+    Button,
+    Grid
 } from "@mui/material";
-import { setCookie } from "../unit/cookie";
+import './game.css'
+import { setCookie, getCookie } from "../unit/cookie";
+import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
+import { Box } from "@mui/system";
 export const GameTable = (props) => {
     const { gameData, page, perPage, totalGameNum, setPage, getGames, pagination } = props;
     const handleChangePage = (event, newPage) => {
@@ -18,48 +22,94 @@ export const GameTable = (props) => {
         setCookie("page", newPage, 9999);
         getGames(newPage);
     };
+
+    const createHTML = (string) => {
+        return { __html: string }
+    }
     // console.log("Game List: ", props)
     return (
         <Paper>
-            <TableContainer>
-                <Table sx={{ minWidth: 1000 }} aria-label="games table">
+            <TableContainer style={{ marginBottom: 50 }}>
+                <Table aria-label="games table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
+                            {/* <TableCell>ID</TableCell> */}
+                            <TableCell></TableCell>
                             <TableCell>Name</TableCell>
                             <TableCell>Game Type</TableCell>
-                            <TableCell>Hot Number</TableCell>
-                            <TableCell>View</TableCell>
+                            <TableCell >
+                                <Grid className="tablecell">
+                                    <LocalFireDepartmentOutlinedIcon /><span>Hot Number</span>
+                                </Grid>
+                            </TableCell>
+                            {
+                                getCookie("authCode")
+                                &&
+                                <TableCell align="center">
+                                    <Grid className="tablecell">
+                                        Action
+                                    </Grid>
+                                </TableCell>
+                            }
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {gameData
                             ? gameData.map((game) => (
                                 <TableRow key={`key_${game.id}`}>
-                                    <TableCell>{game.id}</TableCell>
+                                    {/* <TableCell>{game.id}</TableCell> */}
+                                    <TableCell>
+                                        <Box
+                                            style={{
+                                                borderRadius: 25,
+                                                objectFit: "cover"
+                                            }}
+                                            component="img"
+                                            sx={{
+                                                height: 150,
+                                                width: 150,
+                                                maxHeight: { xs: 50, md: 200, },
+                                                maxWidth: { xs: 50, md: 200 },
+                                            }}
+                                            alt={game.productName}
+                                            src={game.banner}
+                                        />
+                                    </TableCell>
                                     <TableCell>{game.productName}</TableCell>
                                     <TableCell>{game.productType}</TableCell>
-                                    <TableCell>{game.hotNum}</TableCell>
-                                    <TableCell><Button>View</Button></TableCell>
+                                    <TableCell>
+                                        <Grid className="tablecell">
+                                            {game.hotNum}
+                                        </Grid>
+                                    </TableCell>
+                                    {
+                                        getCookie("authCode")
+                                        &&
+                                        <TableCell align="center">
+                                            <Grid className="tablecell">
+                                                <Button>借Game</Button>
+                                            </Grid>
+                                        </TableCell>
+                                    }
                                 </TableRow>
                             ))
                             : null}
                     </TableBody>
                 </Table>
+                {
+                    pagination
+                    &&
+                    <TablePagination
+                        rowsPerPageOptions={[20]}
+                        component="div"
+                        count={totalGameNum}
+                        rowsPerPage={perPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                    />
+                }
             </TableContainer>
-            {
-                pagination
-                &&
-                <TablePagination
-                    rowsPerPageOptions={[20]}
-                    component="div"
-                    count={totalGameNum}
-                    rowsPerPage={perPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                />
-            }
-
         </Paper>
     );
 };
