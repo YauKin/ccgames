@@ -29,7 +29,7 @@ export const GameTable = (props) => {
     // console.log("Game List: ", props)
     return (
         <Paper>
-            <TableContainer style={{ marginBottom: 50 }}>
+            <TableContainer style={{ marginBottom: 10 }}>
                 <Table aria-label="games table">
                     <TableHead>
                         <TableRow>
@@ -43,7 +43,7 @@ export const GameTable = (props) => {
                                 </Grid>
                             </TableCell>
                             {
-                                getCookie("authCode")
+                                (getCookie("authCode") && getCookie("userid"))
                                 &&
                                 <TableCell align="center">
                                     <Grid className="tablecell">
@@ -84,7 +84,7 @@ export const GameTable = (props) => {
                                         </Grid>
                                     </TableCell>
                                     {
-                                        getCookie("authCode")
+                                        (getCookie("authCode") && getCookie("userid"))
                                         &&
                                         <TableCell align="center">
                                             <Grid className="tablecell">

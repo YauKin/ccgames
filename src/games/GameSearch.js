@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseURL } from "../config/env";
-import { TextField } from "@mui/material";
+import { TextField, Box } from "@mui/material";
 import { GameTable } from './GameTable';
 export const GameSearch = (props) => {
     const [gameData, setGameData] = useState([]);
@@ -27,7 +27,7 @@ export const GameSearch = (props) => {
         getGames(e.target.value)
     }
     return (
-        <>
+        <Box padding={3}>
             <TextField label="Search" size="small" onChange={handleChange} fullWidth />
             {
                 gameData.length > 0
@@ -37,7 +37,7 @@ export const GameSearch = (props) => {
                     gameData={gameData} />
             }
 
-        </>
+        </Box>
 
     );
 };

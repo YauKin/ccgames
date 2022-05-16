@@ -28,7 +28,7 @@ export default function FixedBottomNavigation() {
         }
     }
     return (
-        <Box style={{ padding: 10 }} sx={{ pb: 7 }} ref={ref}>
+        <Box sx={{ pb: 7 }} ref={ref}>
             <CssBaseline />
             {
                 renderSwitch(value)
@@ -42,9 +42,9 @@ export default function FixedBottomNavigation() {
                         setCookie("tabid", newValue, 9999);
                     }}
                 >
-                    <BottomNavigationAction label="User Information" icon={<PersonOutlineIcon />} />
-                    <BottomNavigationAction label="Game List" icon={<SportsEsportsIcon />} />
-                    <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+                    <BottomNavigationAction label="" icon={<PersonOutlineIcon />} />
+                    <BottomNavigationAction label="" icon={<SportsEsportsIcon />} />
+                    <BottomNavigationAction label="" icon={<SearchIcon />} />
                 </BottomNavigation>
             </Paper>
         </Box>

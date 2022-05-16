@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { setCookie } from "../unit/cookie";
 import { baseURL } from "../config/env";
@@ -25,7 +25,12 @@ export const Login = () => {
             })
     }
     return (
-        <Grid container padding={10} >
+        <Grid container padding={5} >
+            <Grid style={{ padding: 5, }} item xs={12} md={12} lg={12}>
+                <Typography align="center" variant="h4" gutterBottom component="div">
+                    CCGames
+                </Typography>   
+            </Grid>
             <Grid style={{ padding: 5 }} item xs={12} md={5} lg={5}>
                 <TextField fullWidth size="small" value={ac} onChange={(e) => setAc(e.target.value)} label="Account" />
             </Grid>
