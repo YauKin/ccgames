@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Table,
     TableBody,
@@ -15,6 +15,7 @@ import './game.css'
 import { setCookie, getCookie } from "../unit/cookie";
 import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
 import { Box } from "@mui/system";
+import { RentGameDialog } from '../component/dialog'
 export const GameTable = (props) => {
     const { gameData, page, perPage, totalGameNum, setPage, getGames, pagination } = props;
     const handleChangePage = (event, newPage) => {
@@ -22,11 +23,15 @@ export const GameTable = (props) => {
         setCookie("page", newPage, 9999);
         getGames(newPage);
     };
-
-    const createHTML = (string) => {
-        return { __html: string }
+    const [open, setOpen] = useState(false);
+    const [selectGame, setSelectGame] = useState("")
+    const [rentContent, setRentContent] = useState(false)
+    const handleClick = (record) => {
+        setOpen(true)
+        setSelectGame(record)
+        setRentContent("")
     }
-    // console.log("Game List: ", props)
+
     return (
         <Paper>
             <TableContainer style={{ marginBottom: 10 }}>
@@ -88,7 +93,7 @@ export const GameTable = (props) => {
                                         &&
                                         <TableCell align="center">
                                             <Grid className="tablecell">
-                                                <Button>借Game</Button>
+                                                <Button onClick={() => handleClick(game)} >借Game</Button>
                                             </Grid>
                                         </TableCell>
                                     }
@@ -110,6 +115,7 @@ export const GameTable = (props) => {
                     />
                 }
             </TableContainer>
+            <RentGameDialog rentContent={rentContent} setRentContent={setRentContent} record={selectGame} open={open} handleOpen={setOpen} />
         </Paper>
     );
 };
