@@ -16,7 +16,7 @@ export const RentGameDialog = (props) => {
     };
     const rentGame = () => {
         axios
-            .get(`${baseURL}/order/creatRentOrder/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/creatRentOrder/`, {
                 params: {
                     pId: record.pId,
                     userId: getCookie("userid"),
@@ -38,7 +38,7 @@ export const RentGameDialog = (props) => {
     }
     const creatReserveOrder = () => {
         axios
-            .get(`${baseURL}/order/creatReserveOrder/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/creatReserveOrder/`, {
                 params: {
                     pId: record.pId,
                     userId: getCookie("userid"),
@@ -106,7 +106,7 @@ export const OrderGiveBackDialog = (props) => {
     };
     const giveBackGame = () => {
         axios
-            .get(`${baseURL}/order/orderGiveBack/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/orderGiveBack/`, {
                 params: {
                     oId: record.oId,
                     userId: getCookie("userid"),

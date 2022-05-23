@@ -50,7 +50,7 @@ export const UserInfo = () => {
     }
     const getUserInfo = (userID) => {
         axios
-            .get(`${baseURL}/user/getUserInfo/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/user/getUserInfo/`, {
                 params: {
                     userId: userID,
                     authLoginCode: getCookie("authCode") ? getCookie("authCode") : ""
@@ -72,7 +72,7 @@ export const UserInfo = () => {
     }
     const getUserPreOrder = (userID, status) => {
         axios
-            .get(`${baseURL}/order/getUserPreOrderList/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/getUserPreOrderList/`, {
                 params: {
                     userId: userID,
                     status: status,
@@ -95,7 +95,7 @@ export const UserInfo = () => {
     }
     const getUserOrder = (userID, status) => {
         axios
-            .get(`${baseURL}/order/getUserOrderList/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/getUserOrderList/`, {
                 params: {
                     userId: userID,
                     status: status,

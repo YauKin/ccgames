@@ -9,7 +9,7 @@ export const Login = () => {
     const [pwd, setPwd] = useState("687608")
     const login = () => {
         axios
-            .get(`${baseURL}/user/login/`, {
+            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/user/login/`, {
                 params: {
                     phone: ac,
                     pwd: pwd

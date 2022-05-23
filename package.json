@@ -1,5 +1,6 @@
 {
   "name": "ccgames",
+  "homepage": "http://gridanime.com/ccgames/",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -10,6 +11,11 @@
     "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.7.0",
     "axios": "0.27.2",
+    "axios-jsonp": "^1.0.4",
+    "fetch-jsonp": "^1.2.1",
+    "html-get": "^2.9.16",
+    "jsonp": "^0.2.1",
+    "puppeteer": "^14.1.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-router-dom": "^6.3.0",
