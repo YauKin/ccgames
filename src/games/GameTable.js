@@ -41,10 +41,10 @@ export const GameTable = (props) => {
                             {/* <TableCell>ID</TableCell> */}
                             <TableCell></TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>Game Type</TableCell>
+                            <TableCell>Type</TableCell>
                             <TableCell >
                                 <Grid className="tablecell">
-                                    <LocalFireDepartmentOutlinedIcon /><span>Hot Number</span>
+                                    <LocalFireDepartmentOutlinedIcon />
                                 </Grid>
                             </TableCell>
                             {
@@ -81,10 +81,10 @@ export const GameTable = (props) => {
                                             src={game.banner}
                                         />
                                     </TableCell>
-                                    <TableCell>{game.productName}</TableCell>
-                                    <TableCell>{game.productType}</TableCell>
+                                    <TableCell style={{fontSize:11}}>{game.productName}</TableCell>
+                                    <TableCell style={{fontSize:11}}>{game.productType}</TableCell>
                                     <TableCell>
-                                        <Grid className="tablecell">
+                                        <Grid style={{fontSize:11}} className="tablecell">
                                             {game.hotNum}
                                         </Grid>
                                     </TableCell>
@@ -93,7 +93,7 @@ export const GameTable = (props) => {
                                         &&
                                         <TableCell align="center">
                                             <Grid className="tablecell">
-                                                <Button onClick={() => handleClick(game)} >借Game</Button>
+                                                <Button style={{fontSize:11}} onClick={() => handleClick(game)} >借Game</Button>
                                             </Grid>
                                         </TableCell>
                                     }

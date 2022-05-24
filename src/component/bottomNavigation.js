@@ -42,9 +42,9 @@ export default function FixedBottomNavigation() {
                         setCookie("tabid", newValue, 9999);
                     }}
                 >
-                    <BottomNavigationAction label="" icon={<PersonOutlineIcon />} />
-                    <BottomNavigationAction label="" icon={<SportsEsportsIcon />} />
-                    <BottomNavigationAction label="" icon={<SearchIcon />} />
+                    <BottomNavigationAction label="用戶" icon={<PersonOutlineIcon />} />
+                    <BottomNavigationAction label="遊戲" icon={<SportsEsportsIcon />} />
+                    <BottomNavigationAction label="查詢" icon={<SearchIcon />} />
                 </BottomNavigation>
             </Paper>
         </Box>

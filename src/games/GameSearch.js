@@ -9,7 +9,7 @@ export const GameSearch = (props) => {
     const [error, setError] = useState();
     const getGames = (key) => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/product/getProductList/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/product/getProductList/`, {
                 params: {
                     key: key,
                     authLoginCode: ""

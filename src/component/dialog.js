@@ -16,7 +16,7 @@ export const RentGameDialog = (props) => {
     };
     const rentGame = () => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/creatRentOrder/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/creatRentOrder/`, {
                 params: {
                     pId: record.pId,
                     userId: getCookie("userid"),
@@ -38,7 +38,7 @@ export const RentGameDialog = (props) => {
     }
     const creatReserveOrder = () => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/creatReserveOrder/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/creatReserveOrder/`, {
                 params: {
                     pId: record.pId,
                     userId: getCookie("userid"),
@@ -106,7 +106,7 @@ export const OrderGiveBackDialog = (props) => {
     };
     const giveBackGame = () => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/orderGiveBack/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/orderGiveBack/`, {
                 params: {
                     oId: record.oId,
                     userId: getCookie("userid"),

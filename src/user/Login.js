@@ -9,7 +9,7 @@ export const Login = () => {
     const [pwd, setPwd] = useState("687608")
     const login = () => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/user/login/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/user/login/`, {
                 params: {
                     phone: ac,
                     pwd: pwd
@@ -27,7 +27,7 @@ export const Login = () => {
     return (
         <Grid container padding={5} >
             <Grid style={{ padding: 5, }} item xs={12} md={12} lg={12}>
-                <Typography align="center" variant="h4" gutterBottom component="div">
+                <Typography  align="center" variant="h4" gutterBottom component="div">
                     CCGames
                 </Typography>   
             </Grid>

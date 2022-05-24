@@ -50,7 +50,7 @@ export const UserInfo = () => {
     }
     const getUserInfo = (userID) => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/user/getUserInfo/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/user/getUserInfo/`, {
                 params: {
                     userId: userID,
                     authLoginCode: getCookie("authCode") ? getCookie("authCode") : ""
@@ -72,7 +72,7 @@ export const UserInfo = () => {
     }
     const getUserPreOrder = (userID, status) => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/getUserPreOrderList/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/getUserPreOrderList/`, {
                 params: {
                     userId: userID,
                     status: status,
@@ -95,7 +95,7 @@ export const UserInfo = () => {
     }
     const getUserOrder = (userID, status) => {
         axios
-            .get(`https://cors-anywhere.herokuapp.com/${baseURL}/order/getUserOrderList/`, {
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/getUserOrderList/`, {
                 params: {
                     userId: userID,
                     status: status,
@@ -130,17 +130,17 @@ export const UserInfo = () => {
         }
     }, [userInfo])
     return (
-        <Box padding={5}  >
+        <Box padding={3}  >
             <Grid container style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
                 <Grid padding={1} item xs={10} md={10} lg={10}>
-                    <TextField fullWidth size="small" value={userID} onChange={(e) => setUserID(e.target.value)} label="輸入用戶ID" />
+                    <TextField fullWidth size="small" value={userID} onChange={(e) => setUserID(e.target.value)} label="輸入用戶ID(建議55000~60000)" />
                 </Grid>
                 <Grid padding={1} xs={2} md={2} lg={2} item>
-                    <Button onClick={() => getUserInfo(userID)} fullWidth variant="outlined">Find</Button>
+                    <Button onClick={() => getUserInfo(userID)} fullWidth variant="outlined">查詢</Button>
                 </Grid>
             </Grid>
             {
-                userID && userInfo
+                userInfo
                 &&
                 <Grid container>
                     <Box mt={4} />

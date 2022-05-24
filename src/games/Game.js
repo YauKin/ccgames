@@ -19,7 +19,7 @@ export const Game = (props) => {
   }, []);
   const getGames = (page) => {
     axios
-      .get(`https://cors-anywhere.herokuapp.com/${baseURL}/product/getProductList/`, {
+      .get(`https://joegorccgames.herokuapp.com/${baseURL}/product/getProductList/`, {
         params: {
           cId: 0,
           page: page + 1,
