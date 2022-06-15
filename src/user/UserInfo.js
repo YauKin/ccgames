@@ -3,42 +3,27 @@ import {
     Grid,
     TextField,
     Box,
-    Button,
-    List,
-    ListItemButton,
-    ListItemText,
-    Collapse,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+    Button
 } from "@mui/material";
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import axios from "axios";
 import { setCookie, getCookie } from "../unit/cookie";
 import { baseURL } from "../config/env";
 import { OrderGiveBackDialog } from "../component/dialog";
+import Profile from "./component/Profile";
+import OrderList from "./component/OrderList";
+
 export const UserInfo = () => {
     const [userID, setUserID] = useState(getCookie("userid") ? getCookie("userid") : "")
     const [userInfo, setUserInfo] = useState(getCookie("userInfo") ? getCookie("userInfo") : "")
-    const [userOrder, setUserOrder] = useState([])
-    const [orderHistory, setOrderHistory] = useState([])
-    const [bookOrder, setBookOrder] = useState([])
-    const [isUserInfoOpen, setIsUserInfoOpen] = useState(false)
-    const [isUserOrderOpen, setIsUserOrderOpen] = useState(false)
-    const [isOrderHistoryOpen, setIsOrderHistoryOpen] = useState(false)
-    const [isBookOrderOpen, setIsBookOrderOpen] = useState(false)
+    const [userOrder, setUserOrder] = useState()
+    const [orderHistory, setOrderHistory] = useState()
+    const [bookOrder, setBookOrder] = useState()
 
     const [open, setOpen] = useState(false);
     const [selectGame, setSelectGame] = useState("")
     const [backContent, setBackContent] = useState(false)
     const handleClick = (record) => {
         setOpen(true)
-        console.log("Record: ", record)
         setSelectGame(record)
         setBackContent("")
     }
@@ -140,147 +125,19 @@ export const UserInfo = () => {
                 </Grid>
             </Grid>
             {
-                userInfo
-                &&
-                <Grid container>
-                    <Box mt={4} />
-                    <List style={{ width: "100%" }} component="nav">
-                        <ListItemButton onClick={() => setIsUserInfoOpen(!isUserInfoOpen)}>
-                            <ListItemText primary="用戶資料" />
-                            {
-                                isUserInfoOpen ? <ExpandLess /> : <ExpandMore />
-                            }
-                        </ListItemButton>
-                        <Collapse in={isUserInfoOpen} timeout="auto" unmountOnExit>
-                            <Grid style={{ borderBottomColor: "black", borderWidth: 1 }} padding={2} container>
-                                <Grid item xs={6} md={6} lg={6} ><b>User ID: </b></Grid>
-                                <Grid item xs={6} md={6} lg={6} >{userInfo.userId}</Grid>
-                            </Grid>
-                            <Grid style={{ borderBottomColor: "black", borderWidth: 1 }} padding={2} container>
-                                <Grid item xs={6} md={6} lg={6} ><b>Level Name: </b></Grid>
-                                <Grid item xs={6} md={6} lg={6} >{userInfo.levelName}</Grid>
-                            </Grid>
-                            <Grid style={{ borderBottomColor: "black", borderWidth: 1 }} padding={2} container>
-                                <Grid item xs={6} md={6} lg={6} ><b>Phone: </b></Grid>
-                                <Grid item xs={6} md={6} lg={6} >{userInfo.phone}</Grid>
-                            </Grid>
-                            <Grid style={{ borderBottomColor: "black", borderWidth: 1 }} padding={2} container>
-                                <Grid item xs={6} md={6} lg={6} ><b>Password: </b></Grid>
-                                <Grid item xs={6} md={6} lg={6} >{userInfo.pwd}</Grid>
-                            </Grid>
-                            <Grid style={{ borderBottomColor: "black", borderWidth: 1 }} padding={2} container>
-                                <Grid item xs={6} md={6} lg={6} ><b>Game Auth Code: </b></Grid>
-                                <Grid item xs={6} md={6} lg={6} >{userInfo.accountAuthCode}</Grid>
-                            </Grid>
-                        </Collapse>
-                    </List>
-                    <List style={{ width: "100%" }} component="nav">
-                        <ListItemButton onClick={() => setIsUserOrderOpen(!isUserOrderOpen)}>
-                            <ListItemText primary="訂單中" />
-                            {
-                                isUserOrderOpen ? <ExpandLess /> : <ExpandMore />
-                            }
-                        </ListItemButton>
-                        <Collapse in={isUserOrderOpen} timeout="auto" unmountOnExit>
-                            <Table aria-label="order table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell><b>Name</b></TableCell>
-                                        <TableCell><b>Account</b></TableCell>
-                                        <TableCell><b>Password</b></TableCell>
-                                        <TableCell align="center">
-                                            <Grid className="tablecell">
-                                                <b>Action</b>
-                                            </Grid>
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {userOrder.length > 0
-                                        ? userOrder.map((game) => (
-                                            <TableRow key={`key_${game.id}`}>
-                                                <TableCell>{game.productName}</TableCell>
-                                                <TableCell>{game.gameAccId}</TableCell>
-                                                <TableCell>{game.gameAccPwd}</TableCell>
-                                                <TableCell align="center">
-                                                    <Grid className="tablecell">
-                                                        <Button onClick={() => handleClick(game)}>還Game</Button>
-                                                    </Grid>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))
-                                        : <TableRow>
-                                            <TableCell colSpan={4}>沒有紀錄</TableCell>
-                                        </TableRow>}
-                                </TableBody>
-                            </Table>
-                        </Collapse>
-                    </List>
-                    <List style={{ width: "100%" }} component="nav">
-                        <ListItemButton onClick={() => setIsOrderHistoryOpen(!isOrderHistoryOpen)}>
-                            <ListItemText primary="訂單記錄" />
-                            {
-                                isOrderHistoryOpen ? <ExpandLess /> : <ExpandMore />
-                            }
-                        </ListItemButton>
-                        <Collapse in={isOrderHistoryOpen} timeout="auto" unmountOnExit>
-                            <Table aria-label="order table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell><b>Name</b></TableCell>
-                                        <TableCell><b>Account</b></TableCell>
-                                        <TableCell><b>Password</b></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {orderHistory.length > 0
-                                        ? orderHistory.map((game) => (
-                                            <TableRow key={`key_${game.id}`}>
-                                                <TableCell>{game.productName}</TableCell>
-                                                <TableCell>{game.gameAccId}</TableCell>
-                                                <TableCell>{game.gameAccPwd}</TableCell>
-                                            </TableRow>
-                                        ))
-                                        : <TableRow>
-                                            <TableCell colSpan={4}>沒有紀錄</TableCell>
-                                        </TableRow>}
-                                </TableBody>
-                            </Table>
-                        </Collapse>
-                    </List>
-                    <List style={{ width: "100%" }} component="nav">
-                        <ListItemButton onClick={() => setIsBookOrderOpen(!isBookOrderOpen)}>
-                            <ListItemText primary="預定記錄" />
-                            {
-                                isBookOrderOpen ? <ExpandLess /> : <ExpandMore />
-                            }
-                        </ListItemButton>
-                        <Collapse in={isBookOrderOpen} timeout="auto" unmountOnExit>
-                            <Table aria-label="order table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell><b>Name</b></TableCell>
-                                        <TableCell><b>Account</b></TableCell>
-                                        <TableCell><b>Password</b></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {bookOrder.length > 0
-                                        ? bookOrder.map((game) => (
-                                            <TableRow key={`key_${game.id}`}>
-                                                <TableCell>{game.productName}</TableCell>
-                                                <TableCell>{game.gameAccId}</TableCell>
-                                                <TableCell>{game.gameAccPwd}</TableCell>
-                                            </TableRow>
-                                        ))
-                                        : <TableRow>
-                                            <TableCell colSpan={4}>沒有紀錄</TableCell>
-                                        </TableRow>}
-                                </TableBody>
-                            </Table>
-                        </Collapse>
-                    </List>
-                </Grid>
+                (!userInfo && !userOrder && !orderHistory && !bookOrder)
+                    ?
+                    null
+                    :
+                    <Box>
+                        <Profile record={userInfo} />
+                        <Box mt={2} />
+                        <OrderList orderType="ORDERING" handleClick={handleClick} record={userOrder} />
+                        <Box mt={2} />
+                        <OrderList orderType="ORDER_HISTORY" record={orderHistory} />
+                        <Box mt={2} />
+                        <OrderList orderType="PRE_ORDER" record={bookOrder} />
+                    </Box   >
             }
             <OrderGiveBackDialog backContent={backContent} setBackContent={setBackContent} record={selectGame} open={open} handleOpen={setOpen} />
         </Box >

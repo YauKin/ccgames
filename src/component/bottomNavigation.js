@@ -14,7 +14,6 @@ export default function FixedBottomNavigation() {
     const ref = useRef(null);
 
     useEffect(() => {
-        console.log("value: ", value)
         ref.current.ownerDocument.body.scrollTop = 0;
     }, [value]);
     const renderSwitch = (param) => {
