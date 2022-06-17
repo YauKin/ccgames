@@ -27,6 +27,28 @@ export const UserInfo = () => {
         setSelectGame(record)
         setBackContent("")
     }
+
+    const cancelOrder = (oid) => {
+        axios
+            .get(`https://joegorccgames.herokuapp.com/${baseURL}/order/orderCancel/`, {
+                params: {
+                    userId: userID,
+                    oId: oid,
+                    authLoginCode: getCookie("authCode") ? getCookie("authCode") : ""
+                }
+            })
+            .then((res) => {
+                if (res.data.code == 200) {
+                    window.location.reload()
+                } else {
+                    errorHandling()
+                }
+            })
+            .catch((e) => {
+                errorHandling()
+                console.log("Error: ", e)
+            })
+    }
     const errorHandling = () => {
         setCookie("userid", "", 0)
         setCookie("userInfo", "", 0)
@@ -136,7 +158,7 @@ export const UserInfo = () => {
                         <Box mt={2} />
                         <OrderList orderType="ORDER_HISTORY" record={orderHistory} />
                         <Box mt={2} />
-                        <OrderList orderType="PRE_ORDER" record={bookOrder} />
+                        <OrderList orderType="PRE_ORDER" handleClick={cancelOrder} record={bookOrder} />
                     </Box   >
             }
             <OrderGiveBackDialog backContent={backContent} setBackContent={setBackContent} record={selectGame} open={open} handleOpen={setOpen} />

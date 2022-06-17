@@ -80,7 +80,7 @@ export const RentGameDialog = (props) => {
                             rentContent.data.length > 0
                             &&
                             <DialogContentText id="alert-dialog-description">
-                                {`Account: ${rentContent["data"][0].gameAccId} Password: ${rentContent["data"][0].gameAccPwd}`}
+                                {`Account: ${rentContent["data"].gameAccId} Password: ${rentContent["data"].gameAccPwd}`}
                             </DialogContentText>
                         }
                     </>

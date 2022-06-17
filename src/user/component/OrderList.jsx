@@ -1,9 +1,14 @@
 import React from 'react'
 import { Card, Button, Box, Typography, Grid } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress';
 const OrderList = (props) => {
     const { orderType, record, handleClick } = props
     if (!record) {
-        return null
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <CircularProgress />
+            </Box>
+        )
     }
     if (orderType == "ORDERING") {
         return (
@@ -100,12 +105,13 @@ const OrderList = (props) => {
                             ?
                             record.map((item) => {
                                 return (
-                                    <Grid sx={{ p: 1 }} style={{ borderLeft: 'thick double black', borderRight: 'thick double black' }} direction={'column'} container>
+                                    <Grid key={item.id} sx={{ p: 1 }} style={{ borderLeft: 'thick double black', borderRight: 'thick double black' }} direction={'column'} container>
                                         <Grid item style={{ borderBottom: '1px dashed black' }}>
                                             <Typography variant='body2' >{item.productName ? item.productName : "Loading..."}</Typography>
                                         </Grid>
                                         <Grid container >
                                             <Grid item xs={12} ><Typography variant='caption' >預定日期: {item.created ? item.created : ""}</Typography></Grid>
+                                            <Button fullWidth onClick={() => handleClick(item.oId)}  >取消預定</Button>
                                         </Grid>
                                     </Grid>
                                 )

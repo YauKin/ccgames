@@ -3,6 +3,8 @@ import axios from "axios";
 import { baseURL } from "../config/env";
 import { getCookie, setCookie } from "../unit/cookie";
 import { GameTable } from './GameTable';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Box } from '@mui/material'
 export const Game = (props) => {
   const [gameData, setGameData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +42,11 @@ export const Game = (props) => {
       .finally(() => setIsLoading(false));
   };
   return (
-    !isLoading && (
+    isLoading ?
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Box>
+      :
       <GameTable
         pagination={true}
         gameData={gameData}
@@ -51,6 +57,5 @@ export const Game = (props) => {
         setPage={setPage}
         getGames={getGames}
       />
-    )
   );
 };
