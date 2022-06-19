@@ -81,10 +81,10 @@ export const GameTable = (props) => {
                                             src={game.banner}
                                         />
                                     </TableCell>
-                                    <TableCell style={{fontSize:11}}>{game.productName}</TableCell>
-                                    <TableCell style={{fontSize:11}}>{game.productType}</TableCell>
+                                    <TableCell style={{ fontSize: 11 }}>{game.productName}</TableCell>
+                                    <TableCell style={{ fontSize: 11 }}>{game.productType}</TableCell>
                                     <TableCell>
-                                        <Grid style={{fontSize:11}} className="tablecell">
+                                        <Grid style={{ fontSize: 11 }} className="tablecell">
                                             {game.hotNum}
                                         </Grid>
                                     </TableCell>
@@ -93,7 +93,7 @@ export const GameTable = (props) => {
                                         &&
                                         <TableCell align="center">
                                             <Grid className="tablecell">
-                                                <Button style={{fontSize:11}} onClick={() => handleClick(game)} >借Game</Button>
+                                                <Button style={{ fontSize: 11 }} onClick={() => handleClick(game)} >借Game</Button>
                                             </Grid>
                                         </TableCell>
                                     }

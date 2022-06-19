@@ -77,10 +77,10 @@ export const RentGameDialog = (props) => {
                             {`${rentContent.msg}`}
                         </DialogContentText>
                         {
-                            rentContent.data.length > 0
+                            (rentContent.data.gameAccId && rentContent.data.gameAccPwd)
                             &&
                             <DialogContentText id="alert-dialog-description">
-                                {`Account: ${rentContent["data"].gameAccId} Password: ${rentContent["data"].gameAccPwd}`}
+                                {`帳號: ${rentContent["data"].gameAccId} 密碼: ${rentContent["data"].gameAccPwd}`}
                             </DialogContentText>
                         }
                     </>

@@ -56,26 +56,29 @@ export const UserInfo = () => {
         window.location.reload()
     }
     const getUserInfo = (userID) => {
-        axios
-            .get(`https://joegorccgames.herokuapp.com/${baseURL}/user/getUserInfo/`, {
-                params: {
-                    userId: userID,
-                    authLoginCode: getCookie("authCode") ? getCookie("authCode") : ""
-                }
-            })
-            .then((res) => {
-                if (res.data.code == 200) {
-                    setUserInfo(res.data)
-                    setCookie("userid", res.data.userId, 9999)
-                    setCookie("userInfo", JSON.stringify(res.data), 9999)
-                } else {
+        if (userID != "59509") {
+            axios
+                .get(`https://joegorccgames.herokuapp.com/${baseURL}/user/getUserInfo/`, {
+                    params: {
+                        userId: userID,
+                        authLoginCode: getCookie("authCode") ? getCookie("authCode") : ""
+                    }
+                })
+                .then((res) => {
+                    if (res.data.code == 200) {
+                        setUserInfo(res.data)
+                        setCookie("userid", res.data.userId, 9999)
+                        setCookie("userInfo", JSON.stringify(res.data), 9999)
+                    } else {
+                        errorHandling()
+                    }
+                })
+                .catch((e) => {
                     errorHandling()
-                }
-            })
-            .catch((e) => {
-                errorHandling()
-                console.log("Error: ", e)
-            })
+                    console.log("Error: ", e)
+                })
+        }
+
     }
     const getUserPreOrder = (userID, status) => {
         axios
@@ -140,7 +143,7 @@ export const UserInfo = () => {
         <Box padding={3}  >
             <Grid container style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
                 <Grid padding={1} item xs={10} md={10} lg={10}>
-                    <TextField fullWidth size="small" value={userID} onChange={(e) => setUserID(e.target.value)} label="輸入用戶ID(建議55000~60000)" />
+                    <TextField error={userID == "59509"} helperText={userID == "59509" && "This UserID can't use!"} fullWidth size="small" value={userID} onChange={(e) => setUserID(e.target.value)} label="輸入用戶ID(建議輸入59500以上的用戶ID)" />
                 </Grid>
                 <Grid padding={1} xs={2} md={2} lg={2} item>
                     <Button onClick={() => getUserInfo(userID)} fullWidth variant="outlined">查詢</Button>
